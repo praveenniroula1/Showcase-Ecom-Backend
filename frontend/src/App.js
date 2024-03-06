@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Im
 import webfont from "webfontloader";
 import React from "react";
 import Home from "./component/Home/Home.js";
+import { Toaster } from "react-hot-toast";
+import ProductDetails from "./component/products/ProductDetails.js";
 
 function App() {
   React.useEffect(() => {
@@ -20,8 +22,10 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
+      <Toaster />
     </Router>
   );
 }
