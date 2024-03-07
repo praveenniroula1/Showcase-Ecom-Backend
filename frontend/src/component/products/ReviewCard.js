@@ -8,7 +8,7 @@ const ReviewCard = ({ review }) => {
     color: "rgba(20,20,20,0.1)",
     activeColor: "tomato",
     size: window.innerWidth < 600 ? 20 : 25,
-    value: product.ratings,
+    value: 5,
     isHalf: true,
   };
 
@@ -16,7 +16,7 @@ const ReviewCard = ({ review }) => {
     <div className="reviewCard">
       <img src={profilePng} alt="User" />
       <p>{review.name}</p>
-      <Rating {...options} />
+      {/* <Rating {...options} /> */}
       <span className="reviewCardComment">{review.comment}</span>
     </div>
   );
