@@ -7,8 +7,8 @@ import React from "react";
 import Home from "./component/Home/Home.js";
 import { Toaster } from "react-hot-toast";
 import ProductDetails from "./component/products/ProductDetails.js";
-import Products from "./component/Home/Product.js";
-import Search from "./component/Home/Search.js";
+import Products from "./component/products/Products.js";
+import Search from "./component/products/Search.js";
 
 function App() {
   React.useEffect(() => {
@@ -25,10 +25,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
-        <Route exact path="/products" component={Products} />
-        <Route path="/products/:keyword" component={Products} />
-
-        <Route exact path="/search" component={Search} />
+        <Route exact path="/products" element={<Products />} />
+        <Route path="/products/:keyword" element={<Products />} />
+        <Route exact path="/search" element={<Search />} />
       </Routes>
       <Footer />
       <Toaster />

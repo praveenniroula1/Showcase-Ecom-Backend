@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
-import MetaData from "../layout/MetaData";
-import "./Search.css";
+import MetaData from "../../metadata/MetaData";
 
 const Search = ({ history }) => {
   const [keyword, setKeyword] = useState("");

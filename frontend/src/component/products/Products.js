@@ -1,14 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "./Products.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
-import Loader from "../layout/Loader/Loader";
-import ProductCard from "./ProductCard";
+import Loader from "../layout/Loader";
+import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
-import Slider from "@material-ui/core/Slider";
-import { useAlert } from "react-alert";
-import Typography from "@material-ui/core/Typography";
-import MetaData from "../layout/MetaData";
+import { Slider } from "@mui/material";
+import { Typography } from "@mui/material";
+import MetaData from "../../metadata/MetaData";
+import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 
 const categories = [
   "Laptop",
@@ -20,10 +20,9 @@ const categories = [
   "SmartPhones",
 ];
 
-const Products = ({ match }) => {
+const Products = () => {
   const dispatch = useDispatch();
-
-  const alert = useAlert();
+  const { keyword } = useParams();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
@@ -35,12 +34,10 @@ const Products = ({ match }) => {
     products,
     loading,
     error,
-    productsCount,
-    resultPerPage,
     filteredProductsCount,
+    resultPerPage,
+    productsCount,
   } = useSelector((state) => state.products);
-
-  const keyword = match.params.keyword;
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
@@ -49,16 +46,12 @@ const Products = ({ match }) => {
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
   };
+
   let count = filteredProductsCount;
 
   useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
-  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
+  }, [dispatch, keyword, currentPage, price, category, ratings, toast, error]);
 
   return (
     <Fragment>

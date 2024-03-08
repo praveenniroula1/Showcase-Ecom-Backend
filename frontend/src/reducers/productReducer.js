@@ -8,13 +8,23 @@ import {
   PRODUCT_DETAILS_SUCCESS,
 } from "../constants/productConstants";
 
+// Define initial state
+const initialState = {
+  products: [],
+  loading: false,
+  error: null,
+  productsCount: 0,
+  resultPerPage: 0,
+  filteredProductsCount: 0,
+};
+
 // Reducer function
-export const productReducer = (state = { products: [] }, action) => {
+export const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_PRODUCT_REQUEST:
       return {
         loading: true,
-        products: [],
+        error: null,
       };
     case ALL_PRODUCT_SUCCESS:
       return {
@@ -23,7 +33,9 @@ export const productReducer = (state = { products: [] }, action) => {
         products: action.payload.products,
         productsCount: action.payload.productsCount,
         resultPerPage: action.payload.resultPerPage,
+        filteredProductsCount: action.payload.filteredProductsCount,
       };
+
     case ALL_PRODUCT_FAIL:
       return {
         ...state,
@@ -50,7 +62,7 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
     case PRODUCT_DETAILS_SUCCESS:
       return {
         loading: false,
-        product: action.product,
+        product: action.payload,
       };
     case PRODUCT_DETAILS_FAIL:
       return {
