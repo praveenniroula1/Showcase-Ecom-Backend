@@ -1,6 +1,7 @@
 import React from "react";
-import logo from "../../../src/images/logo.png";
 import { ReactNavbar } from "overlay-navbar";
+import logo from "../../images/logo.png";
+import { FaUserAlt } from "react-icons/fa";
 
 const options = {
   burgerColorHover: "#eb4034",
@@ -10,13 +11,15 @@ const options = {
   logoHoverSize: "10px",
   logoHoverColor: "#eb4034",
   link1Text: "Home",
-  link2Text: "Products",
+  link2Text: "ProductSSSs",
   link3Text: "Contact",
-  link4Text: "About",
+  link4Text: "search",
+  link5Text: "Search",
   link1Url: "/",
   link2Url: "/products",
   link3Url: "/contact",
   link4Url: "/about",
+  link5Url: "/search",
   link1Size: "1.3vmax",
   link1Color: "rgba(35, 35, 35,0.8)",
   nav1justifyContent: "flex-end",

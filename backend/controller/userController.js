@@ -2,17 +2,23 @@ import User from "../models/userModel.js";
 import sendToken from "../utils/jwtToken.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
+import cloudinary from "cloudinary";
 
 // create User-Admin
 export const registerUser = async (req, res, next) => {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
   const { name, email, password } = req.body;
   const user = await User.create({
     name,
     email,
     password,
     avatar: {
-      public_id: "sample Id",
-      url: "sample url",
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
     },
   });
   sendToken(user, res);

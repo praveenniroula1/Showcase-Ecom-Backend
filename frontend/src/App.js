@@ -9,8 +9,11 @@ import { Toaster } from "react-hot-toast";
 import ProductDetails from "./component/products/ProductDetails.js";
 import Products from "./component/products/Products.js";
 import Search from "./component/products/Search.js";
+import LoginSignUp from "./component/user/LoginSignUp.js";
 
 function App() {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+
   React.useEffect(() => {
     webfont.load({
       google: {
@@ -18,6 +21,8 @@ function App() {
       },
     });
   }, []);
+
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
     <Router>
@@ -28,6 +33,7 @@ function App() {
         <Route exact path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />
         <Route exact path="/search" element={<Search />} />
+        <Route exact path="/login" element={<LoginSignUp />} />
       </Routes>
       <Footer />
       <Toaster />
