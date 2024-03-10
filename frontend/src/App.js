@@ -10,6 +10,8 @@ import ProductDetails from "./component/products/ProductDetails.js";
 import Products from "./component/products/Products.js";
 import Search from "./component/products/Search.js";
 import LoginSignUp from "./component/user/LoginSignUp.js";
+import Profile from "../src/component/user/Profile.js";
+import UpdatePassword from "./component/user/UpdatePassword.js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -27,14 +29,37 @@ function App() {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/product/:id" element={<ProductDetails />} />
-        <Route exact path="/products" element={<Products />} />
-        <Route path="/products/:keyword" element={<Products />} />
-        <Route exact path="/search" element={<Search />} />
-        <Route exact path="/login" element={<LoginSignUp />} />
-      </Routes>
+      {isAuthenticated && <UserOptions user={user} />}
+      <Switch>
+        {" "}
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/product/:id" element={<ProductDetails />} />
+          <Route exact path="/products" element={<Products />} />
+          <Route path="/products/:keyword" element={<Products />} />
+          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/login" element={<LoginSignUp />} />
+
+          <ProtectedRoute exact path="/account" component={Profile} />
+
+          <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
+
+          <ProtectedRoute
+            exact
+            path="/password/update"
+            component={UpdatePassword}
+          />
+
+          <Route exact path="/password/forgot" component={ForgotPassword} />
+
+          <Route
+            exact
+            path="/password/reset/:token"
+            component={ResetPassword}
+          />
+        </Routes>
+      </Switch>
+
       <Footer />
       <Toaster />
     </Router>
