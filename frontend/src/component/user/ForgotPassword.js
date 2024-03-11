@@ -1,15 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./ForgotPassword.css";
-import Loader from "../layout/Loader/Loader";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import Loader from "../layout/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, forgotPassword } from "../../actions/userAction";
-import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
+import { FaAccessibleIcon } from "react-icons/fa";
+import "../../CSS/Users/ForgotPassword.css";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const { error, message, loading } = useSelector(
     (state) => state.forgotPassword
@@ -53,7 +51,8 @@ const ForgotPassword = () => {
                 onSubmit={forgotPasswordSubmit}
               >
                 <div className="forgotPasswordEmail">
-                  <MailOutlineIcon />
+                  <FaAccessibleIcon />
+
                   <input
                     type="email"
                     placeholder="Email"

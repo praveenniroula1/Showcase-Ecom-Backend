@@ -1,21 +1,20 @@
 import React, { Fragment, useEffect } from "react";
 import { CgMouse } from "react-icons/cg";
-import ProductCard from "./ProductCard";
-import MetaData from "../../metadata/MetaData";
-import { getProduct } from "../../actions/productAction";
+import ProductCard from "./ProductCard.js";
+import MetaData from "../layout/MetaData";
+import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader";
 import toast from "react-hot-toast";
-import { CLEAR_ERRORS } from "../../constants/productConstants";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.products);
+  const { loading, error, products } = useSelector((state) => state.products);
 
   useEffect(() => {
     if (error) {
       toast.error(error);
-      dispatch(CLEAR_ERRORS());
+      dispatch(clearErrors());
     }
     dispatch(getProduct());
   }, [dispatch, error]);
@@ -26,7 +25,7 @@ const Home = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title="Ecommerce" />
+          <MetaData title="ECOMMERCE" />
 
           <div className="banner">
             <p>Welcome to Ecommerce</p>
@@ -43,9 +42,9 @@ const Home = () => {
 
           <div className="container" id="container">
             {products &&
-              products.map((product) => {
-                return <ProductCard key={product._id} product={product} />;
-              })}
+              products.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
           </div>
         </Fragment>
       )}

@@ -1,17 +1,17 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import Loader from "../layout/Loader";
 import { Link } from "react-router-dom";
-// import MailOutlineIcon from "@material-ui/icons/MailOutline";
-// import LockOpenIcon from "@material-ui/icons/LockOpen";
-// import FaceIcon from "@material-ui/icons/Face";
+import { FaAccessibleIcon } from "react-icons/fa";
+
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
+import "../../CSS/Users/LoginSignUp.css";
 
 const LoginSignUp = ({ history, location }) => {
   const dispatch = useDispatch();
 
   const { error, loading, isAuthenticated } = useSelector(
-    (state) => state.user || {}
+    (state) => state.user
   );
 
   const loginTab = useRef(null);
@@ -70,6 +70,7 @@ const LoginSignUp = ({ history, location }) => {
 
   useEffect(() => {
     if (error) {
+      alert.error(error);
       dispatch(clearErrors());
     }
 
@@ -112,6 +113,7 @@ const LoginSignUp = ({ history, location }) => {
               </div>
               <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
                 <div className="loginEmail">
+                  <FaAccessibleIcon />
                   <input
                     type="email"
                     placeholder="Email"
@@ -121,6 +123,7 @@ const LoginSignUp = ({ history, location }) => {
                   />
                 </div>
                 <div className="loginPassword">
+                  <FaAccessibleIcon />
                   <input
                     type="password"
                     placeholder="Password"
@@ -139,6 +142,7 @@ const LoginSignUp = ({ history, location }) => {
                 onSubmit={registerSubmit}
               >
                 <div className="signUpName">
+                  <FaAccessibleIcon />
                   <input
                     type="text"
                     placeholder="Name"
@@ -149,6 +153,7 @@ const LoginSignUp = ({ history, location }) => {
                   />
                 </div>
                 <div className="signUpEmail">
+                  <FaAccessibleIcon />
                   <input
                     type="email"
                     placeholder="Email"
@@ -159,6 +164,7 @@ const LoginSignUp = ({ history, location }) => {
                   />
                 </div>
                 <div className="signUpPassword">
+                  <FaAccessibleIcon />
                   <input
                     type="password"
                     placeholder="Password"

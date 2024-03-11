@@ -11,8 +11,10 @@ app.use(fileUpload());
 import product from "./routes/productRoutes.js";
 import user from "./routes/userRoutes.js";
 import order from "./routes/orderRoutes.js";
+import payment from "./routes/paymentRoutes.js";
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);
+app.use("/api/v1", payment);
 
 export default app;

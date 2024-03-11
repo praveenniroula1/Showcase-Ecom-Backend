@@ -1,17 +1,15 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./UpdateProfile.css";
-import Loader from "../layout/Loader/Loader";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
-import FaceIcon from "@material-ui/icons/Face";
+import Loader from "../layout/Loader";
+import { FaAccessibleIcon } from "react-icons/fa";
+
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, updateProfile, loadUser } from "../../actions/userAction";
-import { useAlert } from "react-alert";
-import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
+import { UPDATE_PROFILE_RESET } from "../../constants/userConstant";
 import MetaData from "../layout/MetaData";
+import "../../CSS/Users/UpdateProfile.css";
 
 const UpdateProfile = ({ history }) => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const { user } = useSelector((state) => state.user);
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
@@ -85,7 +83,7 @@ const UpdateProfile = ({ history }) => {
                 onSubmit={updateProfileSubmit}
               >
                 <div className="updateProfileName">
-                  <FaceIcon />
+                  <FaAccessibleIcon />
                   <input
                     type="text"
                     placeholder="Name"
@@ -96,7 +94,7 @@ const UpdateProfile = ({ history }) => {
                   />
                 </div>
                 <div className="updateProfileEmail">
-                  <MailOutlineIcon />
+                  <FaAccessibleIcon />
                   <input
                     type="email"
                     placeholder="Email"

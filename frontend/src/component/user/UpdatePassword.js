@@ -1,18 +1,14 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./UpdatePassword.css";
-import Loader from "../layout/Loader/Loader";
+import Loader from "../layout/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, updatePassword } from "../../actions/userAction";
-import { useAlert } from "react-alert";
-import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
+import { UPDATE_PASSWORD_RESET } from "../../constants/userConstant";
 import MetaData from "../layout/MetaData";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import LockIcon from "@material-ui/icons/Lock";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import { FaAccessibleIcon } from "react-icons/fa";
+import "../../CSS/Users/UpdatePassword.css";
 
 const UpdatePassword = ({ history }) => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
 
@@ -65,7 +61,7 @@ const UpdatePassword = ({ history }) => {
                 onSubmit={updatePasswordSubmit}
               >
                 <div className="loginPassword">
-                  <VpnKeyIcon />
+                  <FaAccessibleIcon />
                   <input
                     type="password"
                     placeholder="Old Password"
@@ -76,7 +72,7 @@ const UpdatePassword = ({ history }) => {
                 </div>
 
                 <div className="loginPassword">
-                  <LockOpenIcon />
+                  <FaAccessibleIcon />
                   <input
                     type="password"
                     placeholder="New Password"
@@ -86,7 +82,7 @@ const UpdatePassword = ({ history }) => {
                   />
                 </div>
                 <div className="loginPassword">
-                  <LockIcon />
+                  <FaAccessibleIcon />
                   <input
                     type="password"
                     placeholder="Confirm Password"

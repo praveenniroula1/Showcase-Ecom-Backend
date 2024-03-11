@@ -4,10 +4,10 @@ import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader";
 import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
-import { Slider } from "@mui/material";
+import Slider from "@mui/material/Slider";
 import { Typography } from "@mui/material";
-import MetaData from "../../metadata/MetaData";
-import toast from "react-hot-toast";
+import MetaData from "../layout/MetaData";
+import "../../CSS/Products/Products.css";
 import { useParams } from "react-router-dom";
 
 const categories = [
@@ -21,8 +21,8 @@ const categories = [
 ];
 
 const Products = () => {
-  const dispatch = useDispatch();
   const { keyword } = useParams();
+  const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
@@ -34,9 +34,9 @@ const Products = () => {
     products,
     loading,
     error,
-    filteredProductsCount,
-    resultPerPage,
     productsCount,
+    resultPerPage,
+    filteredProductsCount,
   } = useSelector((state) => state.products);
 
   const setCurrentPageNo = (e) => {
@@ -46,12 +46,16 @@ const Products = () => {
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
   };
-
   let count = filteredProductsCount;
 
   useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
-  }, [dispatch, keyword, currentPage, price, category, ratings, toast, error]);
+  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
 
   return (
     <Fragment>

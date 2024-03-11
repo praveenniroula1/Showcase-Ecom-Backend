@@ -1,16 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
-import "./ResetPassword.css";
-import Loader from "../layout/Loader/Loader";
+import Loader from "../layout/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, resetPassword } from "../../actions/userAction";
-import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import LockIcon from "@material-ui/icons/Lock";
+import { FaAccessibleIcon } from "react-icons/fa";
+import "../../CSS/Users/ResetPassword.css";
 
 const ResetPassword = ({ history, match }) => {
   const dispatch = useDispatch();
-  const alert = useAlert();
 
   const { error, success, loading } = useSelector(
     (state) => state.forgotPassword
@@ -59,7 +56,7 @@ const ResetPassword = ({ history, match }) => {
                 onSubmit={resetPasswordSubmit}
               >
                 <div>
-                  <LockOpenIcon />
+                  <FaAccessibleIcon />
                   <input
                     type="password"
                     placeholder="New Password"
@@ -69,7 +66,7 @@ const ResetPassword = ({ history, match }) => {
                   />
                 </div>
                 <div className="loginPassword">
-                  <LockIcon />
+                  <FaAccessibleIcon />
                   <input
                     type="password"
                     placeholder="Confirm Password"

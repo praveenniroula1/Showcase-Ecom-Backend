@@ -6,19 +6,25 @@ import cloudinary from "cloudinary";
 
 // create User-Admin
 export const registerUser = async (req, res, next) => {
-  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "avatars",
-    width: 150,
-    crop: "scale",
-  });
+  // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+  //   folder: "avatars",
+  //   width: 150,
+  //   crop: "scale",
+  // });
   const { name, email, password } = req.body;
+  const findUser = await User.findOne({ email: req.body.email });
+  if (findUser) {
+    return res.json({
+      message: "Already a user",
+    });
+  }
   const user = await User.create({
     name,
     email,
     password,
     avatar: {
-      public_id: myCloud.public_id,
-      url: myCloud.secure_url,
+      public_id: "myCloud.public_id",
+      url: "myCloud.secure_url",
     },
   });
   sendToken(user, res);
@@ -100,7 +106,7 @@ export const forgotPassword = async (req, res) => {
 export const resetPassword = async (req, res) => {
   const resetPasswordToken = crypto
     .createHash("sha256")
-    .update(resetToken)
+    .update(req.params.token)
     .digest("hex");
 
   const user = await User.findOne({
@@ -166,10 +172,12 @@ export const updateProfile = async (req, res) => {
 // get user details
 export const getAllUser = async (req, res) => {
   const users = await User.find();
+  const totalUser = users.length;
 
   res.json({
     success: true,
     users,
+    totalUser,
   });
 };
 // get user details
