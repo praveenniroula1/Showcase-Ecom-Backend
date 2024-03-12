@@ -48,5 +48,15 @@ const store = configureStore({
     review: reviewReducer,
   },
 });
+// let initialState = {
+//   cart: {
+//     cartItems: localStorage.getItem("cartItems")
+//       ? JSON.parse(localStorage.getItem("cartItems"))
+//       : [],
+//     shippingInfo: localStorage.getItem("shippingInfo")
+//       ? JSON.parse(localStorage.getItem("shippingInfo"))
+//       : {},
+//   },
+// };
 
 export default store;

@@ -14,7 +14,6 @@ import { Button } from "@mui/material";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 import { FaAccessibleIcon } from "react-icons/fa";
 import "../../CSS/Admin/processOrder.css";
-import toast from "react-hot-toast";
 
 const ProcessOrder = ({ history, match }) => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
@@ -36,20 +35,20 @@ const ProcessOrder = ({ history, match }) => {
 
   useEffect(() => {
     if (error) {
-      toast.error(error);
+      alert.error(error);
       dispatch(clearErrors());
     }
     if (updateError) {
-      toast.error(updateError);
+      alert.error(updateError);
       dispatch(clearErrors());
     }
     if (isUpdated) {
-      toast.success("Order Updated Successfully");
+      alert.success("Order Updated Successfully");
       dispatch({ type: UPDATE_ORDER_RESET });
     }
 
     dispatch(getOrderDetails(match.params.id));
-  }, [dispatch, toast, error, match.params.id, isUpdated, updateError]);
+  }, [dispatch, alert, error, match.params.id, isUpdated, updateError]);
 
   return (
     <Fragment>

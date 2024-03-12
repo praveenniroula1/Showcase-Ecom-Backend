@@ -15,7 +15,6 @@ import { FaAccessibleIcon } from "react-icons/fa";
 
 import SideBar from "./Sidebar";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
-import toast from "react-hot-toast";
 
 const ProductList = ({ history }) => {
   const dispatch = useDispatch();
@@ -32,12 +31,12 @@ const ProductList = ({ history }) => {
 
   useEffect(() => {
     if (error) {
-      toast.error(error);
+      alert.error(error);
       dispatch(clearErrors());
     }
 
     if (deleteError) {
-      toast.error(deleteError);
+      alert.error(deleteError);
       dispatch(clearErrors());
     }
 
@@ -48,7 +47,7 @@ const ProductList = ({ history }) => {
     }
 
     dispatch(getAdminProduct());
-  }, [dispatch, error, deleteError, history, isDeleted]);
+  }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
