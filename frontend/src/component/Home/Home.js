@@ -9,15 +9,13 @@ import toast from "react-hot-toast";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { loading, error, products } = useSelector((state) => state.products);
+  const { loading, products } = useSelector((state) => state.products);
+
+  console.log(products);
 
   useEffect(() => {
-    if (error) {
-      toast.error(error);
-      dispatch(clearErrors());
-    }
     dispatch(getProduct());
-  }, [dispatch, error]);
+  }, [dispatch]);
 
   return (
     <Fragment>

@@ -14,6 +14,7 @@ import {
   clearErrors,
 } from "../../actions/orderAction";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
+import toast from "react-hot-toast";
 
 const OrderList = ({ history }) => {
   const dispatch = useDispatch();
@@ -28,23 +29,23 @@ const OrderList = ({ history }) => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
 
     if (deleteError) {
-      alert.error(deleteError);
+      toast.error(deleteError);
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-      alert.success("Order Deleted Successfully");
+      toast.success("Order Deleted Successfully");
       history.push("/admin/orders");
       dispatch({ type: DELETE_ORDER_RESET });
     }
 
     dispatch(getAllOrders());
-  }, [dispatch, alert, error, deleteError, history, isDeleted]);
+  }, [dispatch, toast, error, deleteError, history, isDeleted]);
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },

@@ -8,6 +8,7 @@ import "../../CSS/Admin/newProduct.css";
 
 import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
+import toast from "react-hot-toast";
 
 const NewProduct = ({ history }) => {
   const dispatch = useDispatch();
@@ -34,16 +35,15 @@ const NewProduct = ({ history }) => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
       dispatch(clearErrors());
     }
 
     if (success) {
-      alert.success("Product Created Successfully");
+      toast.success("Product Created Successfully");
       history.push("/admin/dashboard");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
-  }, [dispatch, alert, error, history, success]);
+  }, [dispatch, error, history, success]);
 
   const createProductSubmitHandler = (e) => {
     e.preventDefault();

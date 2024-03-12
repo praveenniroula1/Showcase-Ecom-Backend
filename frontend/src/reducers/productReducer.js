@@ -34,7 +34,15 @@ import {
   CLEAR_ERRORS,
 } from "../constants/productConstants";
 
-export const productsReducer = (state = { products: [] }, action) => {
+const initialState = {
+  products: [],
+  loading: false,
+  error: null,
+  productsCount: 0,
+  resultPerPage: 0,
+  filteredProductsCount: 0,
+};
+export const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_PRODUCT_REQUEST:
     case ADMIN_PRODUCT_REQUEST:
