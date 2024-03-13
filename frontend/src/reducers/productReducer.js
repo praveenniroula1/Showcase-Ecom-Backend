@@ -43,6 +43,7 @@ export const productsReducer = (state = { products: [] }, action) => {
         products: [],
       };
     case ALL_PRODUCT_SUCCESS:
+      console.log(action.payload);
       return {
         loading: false,
         products: action.payload.products,
