@@ -9,15 +9,14 @@ import toast from "react-hot-toast";
 
 const Home = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProduct());
-  }, [dispatch]);
   const { loading, products } = useSelector((state) => ({
     loading: state.loading,
     products: state.products,
   }));
-
+  console.log(products);
+  useEffect(() => {
+    dispatch(getProduct());
+  }, []);
   return (
     <Fragment>
       {loading ? (
@@ -41,7 +40,7 @@ const Home = () => {
 
           {/* <div className="container" id="container">
             {products &&
-              products.map((product) => (
+              products?.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
           </div> */}
