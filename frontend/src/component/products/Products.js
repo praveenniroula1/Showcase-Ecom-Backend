@@ -9,6 +9,7 @@ import { Typography } from "@mui/material";
 import MetaData from "../layout/MetaData";
 import "../../CSS/Products/Products.css";
 import { useParams } from "react-router-dom";
+import { getProductsAction } from "../../A Action/productAction";
 
 const categories = [
   "Laptop",
@@ -54,7 +55,7 @@ const Products = () => {
       dispatch(clearErrors());
     }
 
-    dispatch(getProduct(keyword, currentPage, price, category, ratings));
+    dispatch(getProductsAction(keyword, currentPage, price, category, ratings));
   }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
 
   return (

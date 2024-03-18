@@ -43,6 +43,7 @@ import Shipping from "./component/carts/Shipping.js";
 import { Switch } from "@mui/material";
 import Payment from "../src/component/carts/Payment.js";
 import ConfirmOrder from "../src/component/carts/ConfirmOrder.js";
+import SingleProducts from "./component/products/SingleProducts.js";
 
 function App() {
   useEffect(() => {
@@ -59,7 +60,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/products" element={<Products />} />
-        <Route exact path="/products/:id" element={<Products />} />
+        <Route exact path="/product/:id" element={<SingleProducts />} />
         <Route path="/products/:keyword" element={<Products />} />
         <Route exact path="/search" element={<Search />} />
       </Routes>

@@ -1,22 +1,21 @@
 import React, { Fragment, useEffect } from "react";
 import { CgMouse } from "react-icons/cg";
-import ProductCard from "./ProductCard.js";
+import ProductCard from "./ProductCard.js"; // Assuming ProductCard component is defined elsewhere
 import MetaData from "../layout/MetaData";
-import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader";
-import toast from "react-hot-toast";
+import { getProductsAction } from "../../A Action/productAction.js";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { loading, products } = useSelector((state) => ({
-    loading: state.loading,
-    products: state.products,
-  }));
+  const loading = false; // Set your loading state
+  const { products } = useSelector((state) => state.products);
   console.log(products);
+
   useEffect(() => {
-    dispatch(getProduct());
-  }, []);
+    dispatch(getProductsAction()); // Fetch products when component mounts
+  }, [dispatch]);
+
   return (
     <Fragment>
       {loading ? (
@@ -38,12 +37,12 @@ const Home = () => {
 
           <h2 className="homeHeading">Featured Products</h2>
 
-          {/* <div className="container" id="container">
-            {products &&
+          <div className="container" id="container">
+            {Array.isArray(products) &&
               products?.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
-          </div> */}
+          </div>
         </Fragment>
       )}
     </Fragment>
